@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediksi Harga BMW</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="card">
+    <h2>🚗 Prediksi Harga BMW</h2>
+
+    <form method="POST">
+
+        <select name="model" required>
+            <option value="">-- Pilih Model BMW --</option>
+            {% for m in models %}
+            <option value="{{ m }}">{{ m }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="number" name="year" placeholder="Tahun Produksi" required>
+
+        <select name="transmission" required>
+            {% for t in transmissions %}
+            <option value="{{ t }}">{{ t }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="number" name="mileage" placeholder="Mileage (km)" required>
+
+        <select name="fuel" required>
+            {% for f in fuels %}
+            <option value="{{ f }}">{{ f }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="number" name="tax" placeholder="Pajak" required>
+        <input type="number" step="0.1" name="mpg" placeholder="MPG" required>
+        <input type="number" step="0.1" name="engine" placeholder="Engine Size" required>
+
+        <button type="submit">Prediksi Harga</button>
+    </form>
+
+    {% if harga_gbp %}
+    <div class="result">
+        💷 Harga (GBP): <br>
+        <strong>£ {{ "{:,.2f}".format(harga_gbp).replace(",", ".") }}</strong>
+
+        <hr style="margin:10px 0;">
+
+        🇮🇩 Harga (Rupiah): <br>
+        <strong>Rp {{ "{:,.0f}".format(harga_idr).replace(",", ".") }}</strong>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="result" style="color:red;">
+        ❌ {{ error }}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

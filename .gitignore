@@ -1,0 +1,5 @@
+*.pkl
+model/
+__pycache__/
+venv/
+.env
