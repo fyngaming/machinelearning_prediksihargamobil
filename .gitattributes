@@ -1,1 +1,4 @@
+# Buat .gitattributes baru (timpah yang lama)
+'# Track ML model files dengan Git LFS
 *.pkl filter=lfs diff=lfs merge=lfs -text
+model/*.pkl filter=lfs diff=lfs merge=lfs -text' | Out-File -FilePath .gitattributes -Encoding UTF8

@@ -1,5 +1,29 @@
-*.pkl
-model/
+# Cek isi .gitignore sekarang
+cat .gitignore
+
+# Jika ada baris *.pkl atau model/, HAPUS baris itu
+# Edit manual dengan Notepad atau:
+(Get-Content .gitignore) | Where-Object {$_ -notmatch '\.pkl' -and $_ -notmatch '^model/'} | Set-Content .gitignore
+
+# Tambah konfig yang benar
+'# Python cache
 __pycache__/
+
+# Virtual environments
 venv/
+env/
+.venv/
+
+# Environment variables
 .env
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dataset - JANGAN upload
+dataset/' | Out-File -FilePath .gitignore -Encoding UTF8
